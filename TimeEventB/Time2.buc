@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase;de.prob.units.mchBase" org.eventb.texttools.text_lastmodified="1453989545169" org.eventb.texttools.text_representation="context Time2&#10;&#10;sets Thing DateTime&#10;&#10;constants&#10;&#9;before&#10;&#9;after&#10;&#9;atDateTime&#10;&#9;onTimeLine&#10;&#9;contains&#10;&#9;during&#10;&#9;beginsat&#10;&#9;endsat&#10;&#9;Instant&#10;&#9;TimeObject&#10;&#9;Interval&#10;&#9;TimeLine&#10;&#9;DiscreteTimeLine&#10;&#9;BoundedDicreteInterval&#10;&#9;ContinuousTimeLine&#10;&#10;axioms&#10;&#10;@axm5 TimeObject ⊆  Thing&#10;@axm3 Instant ⊆ TimeObject&#10;@axm6 Interval ⊆  TimeObject&#10;@axm9 TimeLine ⊆ Thing&#10;@axm10 DiscreteTimeLine ⊆ TimeLine&#10;@axm20 ContinuousTimeLine ⊆  TimeLine&#10;@axm16 BoundedDicreteInterval ⊆ Interval&#10;&#10;@axm1 before ∈ Instant ↔ Instant&#10;@axm2 after ∈ Instant ↔ Instant&#10;@axm4 atDateTime ∈ Instant → DateTime&#10;@axm8 onTimeLine ∈ TimeObject ↔ TimeLine&#10;@axm11 contains ∈ Interval ↔ Instant&#10;@axm13 during ∈ Instant ↔ Interval&#10;@axm12 during = contains∼&#10;@axm15 beginsat ∈ Interval → Instant&#10;@axm19 endsat ∈ Interval → Instant&#10;&#10;@axm7 Instant ∩ Interval = ∅&#10;@axm14 beginsat ⊆  contains&#10;@axm17 BoundedDicreteInterval = dom(onTimeLine ▷ DiscreteTimeLine)&#10;@axm18 BoundedDicreteInterval ⊆  dom(beginsat) ∩ dom(endsat)&#10;@axm21 TimeLine = DiscreteTimeLine ∪  ContinuousTimeLine&#10;&#10;&#10;end&#10;" version="3">
+<org.eventb.core.carrierSet name="_LmO74MQ_EeWDyc6SE8y6sg" org.eventb.core.identifier="Thing"/>
+<org.eventb.core.constant name="_LmO74sQ_EeWDyc6SE8y6sg" org.eventb.core.identifier="before"/>
+<org.eventb.core.constant name="_LmO748Q_EeWDyc6SE8y6sg" org.eventb.core.identifier="after"/>
+<org.eventb.core.axiom name="_LmYs4MQ_EeWDyc6SE8y6sg" org.eventb.core.label="axm5" org.eventb.core.predicate="TimeObject ⊆  Thing"/>
+<org.eventb.core.axiom name="_LmYs4cQ_EeWDyc6SE8y6sg" org.eventb.core.label="axm3" org.eventb.core.predicate="Instant ⊆ TimeObject"/>
+<org.eventb.core.axiom name="_LmYs4sQ_EeWDyc6SE8y6sg" org.eventb.core.label="axm6" org.eventb.core.predicate="Interval ⊆  TimeObject"/>
+<org.eventb.core.constant name="_fqGS0MQ_EeWDyc6SE8y6sg" org.eventb.core.identifier="atDateTime"/>
+<org.eventb.core.constant name="_fqGS0cQ_EeWDyc6SE8y6sg" org.eventb.core.identifier="onTimeLine"/>
+<org.eventb.core.axiom name="_fqGS0sQ_EeWDyc6SE8y6sg" org.eventb.core.label="axm9" org.eventb.core.predicate="TimeLine ⊆ Thing"/>
+<org.eventb.core.constant name="__BWpkMQ_EeWDyc6SE8y6sg" org.eventb.core.identifier="contains"/>
+<org.eventb.core.carrierSet name="_Rg0OgMRAEeWDyc6SE8y6sg" org.eventb.core.identifier="DateTime"/>
+<org.eventb.core.axiom name="_Rg0OgsRAEeWDyc6SE8y6sg" org.eventb.core.label="axm10" org.eventb.core.predicate="DiscreteTimeLine ⊆ TimeLine"/>
+<org.eventb.core.constant name="_EHhx0MRDEeWDyc6SE8y6sg" org.eventb.core.identifier="during"/>
+<org.eventb.core.axiom name="_EHi_8MRDEeWDyc6SE8y6sg" org.eventb.core.label="axm20" org.eventb.core.predicate="ContinuousTimeLine ⊆  TimeLine"/>
+<org.eventb.core.axiom name="_EHkOEMRDEeWDyc6SE8y6sg" org.eventb.core.label="axm16" org.eventb.core.predicate="BoundedDicreteInterval ⊆ Interval"/>
+<org.eventb.core.constant name="_YroIAMRDEeWDyc6SE8y6sg" org.eventb.core.identifier="beginsat"/>
+<org.eventb.core.constant name="_YrpWIMRDEeWDyc6SE8y6sg" org.eventb.core.identifier="endsat"/>
+<org.eventb.core.axiom name="_YrqkQMRDEeWDyc6SE8y6sg" org.eventb.core.label="axm1" org.eventb.core.predicate="before ∈ Instant ↔ Instant"/>
+<org.eventb.core.axiom name="_YrsZcMRDEeWDyc6SE8y6sg" org.eventb.core.label="axm2" org.eventb.core.predicate="after ∈ Instant ↔ Instant"/>
+<org.eventb.core.constant name="_la-IcMRDEeWDyc6SE8y6sg" org.eventb.core.identifier="Instant"/>
+<org.eventb.core.axiom name="_la_WkMRDEeWDyc6SE8y6sg" org.eventb.core.label="axm4" org.eventb.core.predicate="atDateTime ∈ Instant → DateTime"/>
+<org.eventb.core.constant name="_cajRsMXAEeWtr59eHMGG6A" org.eventb.core.identifier="TimeObject"/>
+<org.eventb.core.axiom name="_cajRscXAEeWtr59eHMGG6A" org.eventb.core.label="axm8" org.eventb.core.predicate="onTimeLine ∈ TimeObject ↔ TimeLine"/>
+<org.eventb.core.constant name="_lK5tAMXAEeWtr59eHMGG6A" org.eventb.core.identifier="Interval"/>
+<org.eventb.core.axiom name="_lK5tAcXAEeWtr59eHMGG6A" org.eventb.core.label="axm11" org.eventb.core.predicate="contains ∈ Interval ↔ Instant"/>
+<org.eventb.core.axiom name="_8GQ1gMXAEeWtr59eHMGG6A" org.eventb.core.label="axm13" org.eventb.core.predicate="during ∈ Instant ↔ Interval"/>
+<org.eventb.core.constant name="_rge5kMXBEeWtr59eHMGG6A" org.eventb.core.identifier="TimeLine"/>
+<org.eventb.core.axiom name="_rge5kcXBEeWtr59eHMGG6A" org.eventb.core.label="axm12" org.eventb.core.predicate="during = contains∼"/>
+<org.eventb.core.constant name="_fe3acMXEEeWtr59eHMGG6A" org.eventb.core.identifier="DiscreteTimeLine"/>
+<org.eventb.core.axiom name="_fe3accXEEeWtr59eHMGG6A" org.eventb.core.label="axm15" org.eventb.core.predicate="beginsat ∈ Interval → Instant"/>
+<org.eventb.core.constant name="_t-2AIMXGEeWtr59eHMGG6A" org.eventb.core.identifier="BoundedDicreteInterval"/>
+<org.eventb.core.axiom name="_t-2AIcXGEeWtr59eHMGG6A" org.eventb.core.label="axm19" org.eventb.core.predicate="endsat ∈ Interval → Instant"/>
+<org.eventb.core.axiom name="_t-2AIsXGEeWtr59eHMGG6A" org.eventb.core.label="axm7" org.eventb.core.predicate="Instant ∩ Interval = ∅"/>
+<org.eventb.core.axiom name="_3hPjcMXGEeWtr59eHMGG6A" org.eventb.core.label="axm14" org.eventb.core.predicate="beginsat ⊆  contains"/>
+<org.eventb.core.axiom name="_7hvkcMXGEeWtr59eHMGG6A" org.eventb.core.label="axm17" org.eventb.core.predicate="BoundedDicreteInterval = dom(onTimeLine ▷ DiscreteTimeLine)"/>
+<org.eventb.core.constant name="_Nv9oYMXHEeWtr59eHMGG6A" org.eventb.core.identifier="ContinuousTimeLine"/>
+<org.eventb.core.axiom name="_Nv9oYcXHEeWtr59eHMGG6A" org.eventb.core.label="axm18" org.eventb.core.predicate="BoundedDicreteInterval ⊆  dom(beginsat) ∩ dom(endsat)"/>
+<org.eventb.core.axiom name="_SwBo8MXHEeWtr59eHMGG6A" org.eventb.core.label="axm21" org.eventb.core.predicate="TimeLine = DiscreteTimeLine ∪  ContinuousTimeLine"/>
+</org.eventb.core.contextFile>

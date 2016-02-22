@@ -1,0 +1,9 @@
+1) Ecriture d'un modèle UML pour OWL
+difficultés : hierarchie pour les propriétés (=> ObjectProperty et DataTypeProperty héritent de Property)
+              Que faire de Thing et Nothing (=> enlevées du diagrame)
+
+2) Ecriture d'un modèle UML pour PLIB
+difficultés : sémantiques des différents types de classe/propriété
+              hierarchie des classes/propriétés
+
+3) Union des modèles UML de OWL et PLIB

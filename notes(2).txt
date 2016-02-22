@@ -1,0 +1,19 @@
+Modélisation du langage OWL :
+-	Etude du langage avec littérature
+-	Première ébauche UML, raffinée par ajouts successifs
+Modélisation de PLIB :
+-	Etude du langage avec littérature
+-	Ebauche de schéma UML : difficulté à représenter les « Property »
+-	Réflexion sur les similitudes entre les deux langages
+Développement du méta-modèle :
+-	Mise en commun des éléments des deux diagrammes
+-	Réflexions sur les différences entre les deux langages : gestion des property ? des restrictions ?
+Instanciation des modèles :
+-	Développement de modèles Ecore modélisant les langages OWL et PLIB
+-	Instanciation des modèles pour essayer de réécrire des ontologies fournies en vue d’améliorer notre représentation
+-	Changements mineurs dans nos modélisations pour mieux transcrire les spécificités des langages
+Méthode B :
+-	Découverte de la méthode B
+-	Ecriture du fichier context correspondant à une ontologie décrite en OWL 
+-	Réflexion sur l’écriture de règles de traduction de OWL vers B
+

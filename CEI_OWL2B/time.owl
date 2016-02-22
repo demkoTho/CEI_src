@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dcterms "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY daml "http://www.daml.org/2001/03/daml+oil#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY p1 "http://www.owl-ontologies.com/assert.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+]>
+
+
+<rdf:RDF xmlns="http://purl.org/NET/c4dm/time.owl#"
+     xml:base="http://purl.org/NET/c4dm/time.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:p1="http://www.owl-ontologies.com/assert.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+     xmlns:dcterms="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="http://purl.org/NET/c4dm/time.owl">
+        <rdfs:comment rdf:datatype="&xsd;string">Base music OWL ontology, author : Samer Abdallah, Yves Raimond
+Now event-focused instead of performance-focused
+The dublin core metadata set (owl DL) is loaded... This applied to each subclass of owl:Thing</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#after -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#after">
+        <rdf:type rdf:resource="&owl;ReflexiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#Instant"/>
+        <rdfs:range rdf:resource="http://purl.org/NET/c4dm/time.owl#Instant"/>
+        <owl:inverseOf rdf:resource="http://purl.org/NET/c4dm/time.owl#before"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#before -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#before">
+        <rdf:type rdf:resource="&owl;ReflexiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://purl.org/NET/c4dm/time.owl#Instant"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#Instant"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#beginsAt -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#beginsAt">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/NET/c4dm/time.owl#contains"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#contains -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#contains">
+        <rdfs:range rdf:resource="http://purl.org/NET/c4dm/time.owl#Instant"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#Interval"/>
+        <owl:inverseOf rdf:resource="http://purl.org/NET/c4dm/time.owl#during"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#during -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#during">
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#Instant"/>
+        <rdfs:range rdf:resource="http://purl.org/NET/c4dm/time.owl#Interval"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#endsAt -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#endsAt">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.org/NET/c4dm/time.owl#contains"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#firstTimeLine -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#firstTimeLine">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeLine"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeLineMap"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#onTimeLine -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#onTimeLine">
+        <rdfs:range rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeLine"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeObject"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#secondTimeLine -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/NET/c4dm/time.owl#secondTimeLine">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeLine"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeLineMap"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#atDateTime -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/NET/c4dm/time.owl#atDateTime">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#Instant"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#sampleRate -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/NET/c4dm/time.owl#sampleRate">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/time.owl#UniformSamplingMap"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#BoundedDiscreteInterval -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#BoundedDiscreteInterval">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/NET/c4dm/time.owl#onTimeLine"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/NET/c4dm/time.owl#DiscreteTimeLine"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.org/NET/c4dm/time.owl#Interval"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.org/NET/c4dm/time.owl#beginsAt"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.org/NET/c4dm/time.owl#endsAt"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#ContinuousTimeLine -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#ContinuousTimeLine">
+        <rdfs:subClassOf rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeLine"/>
+        <owl:disjointWith rdf:resource="http://purl.org/NET/c4dm/time.owl#DiscreteTimeLine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#DiscreteTimeLine -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#DiscreteTimeLine">
+        <rdfs:subClassOf rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeLine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#Instant -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#Instant">
+        <rdfs:subClassOf rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/NET/c4dm/time.owl#atDateTime"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://purl.org/NET/c4dm/time.owl#Interval"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#Interval -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#Interval">
+        <rdfs:subClassOf rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeObject"/>
+        <rdfs:comment rdf:datatype="&xsd;string">time interval (see Allen theory)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#TimeLine -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#TimeLine">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.org/NET/c4dm/time.owl#ContinuousTimeLine"/>
+                    <rdf:Description rdf:about="http://purl.org/NET/c4dm/time.owl#DiscreteTimeLine"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment rdf:datatype="&xsd;string">Represents a linear and coherent piece of time -- can be either abstract (such as the one behind a score) or concrete (such as the universal time line).
+Two timelines can be mapped using timeline maps.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#TimeLineMap -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#TimeLineMap">
+        <rdfs:comment rdf:datatype="&xsd;string">Allows to map two time lines together</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#TimeObject -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#TimeObject">
+        <rdfs:comment rdf:datatype="&xsd;string">A time point, or a time interval -- an object which has a meaning when refering to a time line
+Mmmm - OntoClean issue here!</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#UniformSamplingMap -->
+
+    <owl:Class rdf:about="http://purl.org/NET/c4dm/time.owl#UniformSamplingMap">
+        <rdfs:subClassOf rdf:resource="http://purl.org/NET/c4dm/time.owl#TimeLineMap"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/NET/c4dm/time.owl#sampleRate"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/NET/c4dm/time.owl#secondTimeLine"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/NET/c4dm/time.owl#DiscreteTimeLine"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/NET/c4dm/time.owl#firstTimeLine"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/NET/c4dm/time.owl#ContinuousTimeLine"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/NET/c4dm/time.owl#mytimelinesample -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/NET/c4dm/time.owl#mytimelinesample">
+        <rdf:type rdf:resource="http://purl.org/NET/c4dm/time.owl#DiscreteTimeLine"/>
+        <rdfs:comment rdf:datatype="&xsd;string">A discrete timeline where points are adressed through a long int (sample number)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://purl.org/NET/c4dm/time.owl#universaltimeline">
+        <rdfs:comment rdf:datatype="&xsd;string">this is the `universal&apos; time line -- can adress time intervals on it using date/dateTime -- UTC</rdfs:comment>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+

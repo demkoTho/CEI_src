@@ -1,0 +1,52 @@
+CONTEXT
+	http://purl.org/NET/c4dm/time.owl
+SETS
+	Thing
+	int
+	dateTime
+CONSTANTS
+	TimeLine
+	BoundedDiscreteInterval
+	TimeLineMap
+	UniformSamplingMap
+	DiscreteTimeLine
+	TimeObject
+	Interval
+	Instant
+	ContinuousTimeLine
+	contains
+	beginsAt
+	endsAt
+	sampleRate
+	atDateTime
+	secondTimeLine
+	onTimeLine
+	firstTimeLine
+	during
+	before
+	after
+AXIOMS
+	@axm1 TimeLine <: Thing
+	@axm2 BoundedDiscreteInterval <: Thing
+	@axm3 TimeLineMap <: Thing
+	@axm4 UniformSamplingMap <: Thing
+	@axm5 DiscreteTimeLine <: TimeLine
+	@axm6 TimeObject <: Thing
+	@axm7 Interval <: Thing
+	@axm8 Instant <: Thing
+	@axm9 ContinuousTimeLine <: TimeLine
+	@axm10 contains <: contains
+	@axm11 beginsAt <: contains
+	@axm12 endsAt <: contains
+	@axm13 sampleRate : UniformSamplingMap --> int
+	@axm14 atDateTime : Instant --> dateTime
+	@axm15 secondTimeLine : TimeLineMap --> TimeLine
+	@axm16 onTimeLine : TimeObject <-> TimeLine
+	@axm17 firstTimeLine : TimeLineMap --> TimeLine
+	@axm18 during : Instant <-> Interval
+	@axm19 during = contains~
+	@axm20 before : Instant <-> Instant
+	@axm21 before = after~
+	@axm22 before circ before <: before
+	@axm23 after : Instant <-> Instant
+	@axm24 after circ after <: after

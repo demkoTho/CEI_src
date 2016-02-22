@@ -62,6 +62,7 @@ public class Context {
 		this.axioms = axioms;
 	}
 
+	// Génère les constantes associées à une ontologie
 	public Vector<String> extractConstants (OntModel ontologie)
 	{
 		Vector<String> result = new Vector<String>();
@@ -88,10 +89,12 @@ public class Context {
 		return result;
 	}
 
+	// Génère les axiomes associés à une ontologie
 	public Vector<String> extractAxioms(OntModel ontologie)
 	{
 		Vector<String> result = new Vector<String>();
 
+		// Gestion des déclarations de classes
 		ExtendedIterator<OntClass> it = ontologie.listNamedClasses();
 		while(it.hasNext())
 		{
@@ -125,6 +128,7 @@ public class Context {
 			}
 		}
 
+		// Gestion de la déclaration des propriétés
 		ExtendedIterator<OntProperty> it2 = ontologie.listAllOntProperties();
 		while(it2.hasNext())
 		{
@@ -132,6 +136,8 @@ public class Context {
 			if(s.getURI().contains(name))
 			{
 				String name = shortenURL(s);
+				
+				// TODO: changer ça en un itérateur sur les superproperties (cf classes)
 				OntProperty superProperty = s.getSuperProperty();
 
 				// Déclaration des propriétés
@@ -159,20 +165,24 @@ public class Context {
 				if(s.isSymmetricProperty())
 				{
 					result.add("id <: " + name + " circ " + name);
+					
 				}
+				
+				//TODO: gérer les fonctions réflexives
 			}
 		}
 
 		return result;
 	}
 
-	public static String interpretRestriction(Restriction r)
+	// Interprète une restriction en retournant le texte correspondant en Event-B
+	public String interpretRestriction(Restriction r)
 	{
 		String result = "";
 		
 		if(r.isSomeValuesFromRestriction())
 		{
-			result += "dom(" + shortenURL(r.getOnProperty()) + " |> " + shortenURL(r.asSomeValuesFromRestriction().getSomeValuesFrom()) + ")";			
+			result += "dom(" + shortenURL(r.getOnProperty()) + " |> " + interpretClass((OntClass) r.asSomeValuesFromRestriction().getSomeValuesFrom()) + ")";			
 		}
 		else if (r.isCardinalityRestriction())
 		{
@@ -181,31 +191,40 @@ public class Context {
 				result += "dom(" + shortenURL(r.getOnProperty()) + ")";			
 			}
 		}
+		else if (r.isHasValueRestriction() || (r.isMinCardinalityRestriction() && r.asMinCardinalityRestriction().getMinCardinality() == 1))
+		{
+			result += "dom(" + shortenURL(r.getOnProperty()) + ")";			
+		}
 			
 		return result;
 	}
 	
+	// Interprète une classe en retournant le texte correspondant en Event-B
 	public String interpretClass (OntClass c)
 	{
 		String result = "";
 		
+		// Classe existante
 		if(constants.contains(shortenURL(c)))
 		{
 			result += shortenURL(c);
 		}
+		// Restriction
 		else if (c.isRestriction())
 		{
 			result += interpretRestriction(c.asRestriction());
 		}
+		// Intersection ou Union
 		else
 		{
 			try
 			{
-				// Gestion des unions
 				UnionClass ic = c.asUnionClass();
 
 				for (Iterator i = ic.listOperands(); i.hasNext(); ) {
 					OntClass op = (OntClass) i.next();
+					
+					result += "(";
 
 					if(op.isRestriction())
 					{
@@ -218,6 +237,8 @@ public class Context {
 
 					if(i.hasNext())
 						result += " \\/ ";
+					
+					result += ")";
 				}
 
 			} catch (Exception e) {
@@ -226,9 +247,8 @@ public class Context {
 
 			try
 			{
-				// Gestion des intersections
 				IntersectionClass ic = c.asIntersectionClass();
-
+				result += "(";
 				for (Iterator i = ic.listOperands(); i.hasNext(); ) {
 					OntClass op = (OntClass) i.next();
 
@@ -243,7 +263,8 @@ public class Context {
 					if(i.hasNext())
 						result += " /\\ ";
 				}
-
+				
+				result += ")";
 
 			} catch (Exception e) {
 
@@ -253,11 +274,13 @@ public class Context {
 		return result;
 	}
 	
+	// Enlève le nom de l'ontologie d'une URL
 	public static String shortenURL (Resource r)
 	{
 		return r.toString().replaceAll("(\\S)*#", "");
 	}
-
+	
+	// Retourne le fichier contexte Event-B associé à ce contexte
 	public String toString()
 	{
 		String result = "CONTEXT\r\n\t"+name+"\r\n";

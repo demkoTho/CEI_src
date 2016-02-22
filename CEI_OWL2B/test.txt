@@ -1,60 +1,137 @@
 CONTEXT
-	http://purl.org/NET/c4dm/time.owl
+	http://www.owl-ontologies.com/travel.owl
 SETS
 	Thing
 	int
 	string
 	dateTime
 CONSTANTS
-	TimeLine
-	TimeLineMap
-	BoundedDiscreteInterval
-	UniformSamplingMap
-	DiscreteTimeLine
-	TimeObject
-	Interval
-	Instant
-	ContinuousTimeLine
-	contains
-	beginsAt
-	endsAt
-	sampleRate
-	atDateTime
-	secondTimeLine
-	onTimeLine
-	firstTimeLine
-	during
-	before
-	after
+	UrbanArea
+	City
+	LuxuryHotel
+	Hotel
+	Campground
+	Town
+	Sightseeing
+	RuralArea
+	NationalPark
+	BedAndBreakfast
+	BudgetHotelDestination
+	Destination
+	AccommodationRating
+	Capital
+	BudgetAccommodation
+	BackpackersDestination
+	Beach
+	RetireeDestination
+	Hiking
+	Sunbathing
+	Museums
+	Accommodation
+	Yoga
+	Relaxation
+	Farmland
+	FamilyDestination
+	Surfing
+	Activity
+	QuietDestination
+	BunjeeJumping
+	Contact
+	Adventure
+	Safari
+	Sports
+	hasActivity
+	hasContact
+	hasZipCode
+	hasStreet
+	hasCity
+	hasEMail
+	hasRating
+	isOfferedAt
+	hasAccommodation
+	hasPart
 AXIOMS
-	@axm1 TimeLine = ContinuousTimeLine \/ DiscreteTimeLine
-	@axm2 BoundedDiscreteInterval <: dom(beginsAt) /\ dom(endsAt)
-	@axm3 BoundedDiscreteInterval <: Interval
-	@axm4 BoundedDiscreteInterval <: TimeObject
-	@axm5 BoundedDiscreteInterval = dom(onTimeLine |> DiscreteTimeLine)
-	@axm6 UniformSamplingMap <: dom(firstTimeLine |> ContinuousTimeLine)
-	@axm7 UniformSamplingMap <: dom(secondTimeLine |> DiscreteTimeLine)
-	@axm8 UniformSamplingMap <: dom(sampleRate)
-	@axm9 UniformSamplingMap <: TimeLineMap
-	@axm10 DiscreteTimeLine <: TimeLine
-	@axm11 Interval <: TimeObject
-	@axm12 Instant <: dom(atDateTime)
-	@axm13 Instant <: TimeObject
-	@axm14 Instant /\ Interval = {}
-	@axm15 ContinuousTimeLine <: TimeLine
-	@axm16 ContinuousTimeLine /\ DiscreteTimeLine = {}
-	@axm17 contains <: contains
-	@axm18 beginsAt <: contains
-	@axm19 endsAt <: contains
-	@axm20 sampleRate : UniformSamplingMap --> int
-	@axm21 atDateTime : Instant --> dateTime
-	@axm22 secondTimeLine : TimeLineMap --> TimeLine
-	@axm23 onTimeLine : TimeObject <-> TimeLine
-	@axm24 firstTimeLine : TimeLineMap --> TimeLine
-	@axm25 during : Instant <-> Interval
-	@axm26 during = contains~
-	@axm27 before : Instant <-> Instant
-	@axm28 before = after~
-	@axm29 before circ before <: before
-	@axm30 after : Instant <-> Instant
-	@axm31 after circ after <: after
+	@axm1 UrbanArea <: Destination
+	@axm2 UrbanArea /\ RuralArea = {}
+	@axm3 City <: dom(hasAccommodation |> LuxuryHotel)
+	@axm4 City <: UrbanArea
+	@axm5 City <: Destination
+	@axm6 LuxuryHotel <: dom(hasRating)
+	@axm7 LuxuryHotel <: Hotel
+	@axm8 LuxuryHotel <: Accommodation
+	@axm9 Hotel <: Accommodation
+	@axm10 Hotel /\ Campground = {}
+	@axm11 Hotel /\ BedAndBreakfast = {}
+	@axm12 Campground <: Accommodation
+	@axm13 Campground <: dom(hasRating)
+	@axm14 Campground /\ Hotel = {}
+	@axm15 Campground /\ BedAndBreakfast = {}
+	@axm16 Town <: UrbanArea
+	@axm17 Town <: Destination
+	@axm18 Sightseeing <: Activity
+	@axm19 Sightseeing /\ Adventure = {}
+	@axm20 Sightseeing /\ Relaxation = {}
+	@axm21 Sightseeing /\ Sports = {}
+	@axm22 RuralArea <: Destination
+	@axm23 RuralArea /\ UrbanArea = {}
+	@axm24 NationalPark <: dom(hasActivity |> Hiking)
+	@axm25 NationalPark <: dom(hasAccommodation |> Campground)
+	@axm26 NationalPark <: RuralArea
+	@axm27 NationalPark <: Destination
+	@axm28 BedAndBreakfast <: Accommodation
+	@axm29 BedAndBreakfast /\ Campground = {}
+	@axm30 BedAndBreakfast /\ Hotel = {}
+	@axm31 BudgetHotelDestination = (Destination /\ dom(hasAccommodation |> (BudgetAccommodation /\ Hotel)))
+	@axm32 Capital <: City
+	@axm33 Capital <: dom(hasActivity |> Museums)
+	@axm34 Capital <: Destination
+	@axm35 Capital <: dom(hasAccommodation |> LuxuryHotel)
+	@axm36 Capital <: UrbanArea
+	@axm37 BudgetAccommodation = (Accommodation /\ dom(hasRating |> ))
+	@axm38 BackpackersDestination = (Destination /\ dom(hasAccommodation |> BudgetAccommodation) /\ dom(hasActivity |> (Sports \/ )(Adventure)))
+	@axm39 Beach <: Destination
+	@axm40 RetireeDestination = (Destination /\ dom(hasAccommodation |> dom(hasRating)) /\ dom(hasActivity |> Sightseeing))
+	@axm41 Hiking <: Sports
+	@axm42 Hiking <: Activity
+	@axm43 Sunbathing <: Relaxation
+	@axm44 Sunbathing <: Activity
+	@axm45 Museums <: Sightseeing
+	@axm46 Museums <: Activity
+	@axm47 Yoga <: Relaxation
+	@axm48 Yoga <: Activity
+	@axm49 Relaxation <: Activity
+	@axm50 Relaxation /\ Adventure = {}
+	@axm51 Relaxation /\ Sightseeing = {}
+	@axm52 Relaxation /\ Sports = {}
+	@axm53 Farmland <: RuralArea
+	@axm54 Farmland <: Destination
+	@axm55 FamilyDestination = (Destination /\ dom(hasAccommodation) /\ )
+	@axm56 Surfing <: Sports
+	@axm57 Surfing <: Activity
+	@axm58 QuietDestination = (Destination /\ -3a2e0e3a:1530a68398f:-7ffa)
+	@axm59 BunjeeJumping <: Adventure
+	@axm60 BunjeeJumping <: Activity
+	@axm61 Adventure <: Activity
+	@axm62 Adventure /\ Relaxation = {}
+	@axm63 Adventure /\ Sightseeing = {}
+	@axm64 Adventure /\ Sports = {}
+	@axm65 Safari <: Sightseeing
+	@axm66 Safari <: Adventure
+	@axm67 Safari <: Activity
+	@axm68 Sports <: Activity
+	@axm69 Sports /\ Sightseeing = {}
+	@axm70 Sports /\ Relaxation = {}
+	@axm71 Sports /\ Adventure = {}
+	@axm72 hasActivity : Destination <-> Activity
+	@axm73 hasActivity = isOfferedAt~
+	@axm74 hasContact : Activity <-> Contact
+	@axm75 hasZipCode : Contact --> int
+	@axm76 hasStreet : Contact --> string
+	@axm77 hasCity : Contact --> string
+	@axm78 hasEMail : Contact --> string
+	@axm79 hasRating : Accommodation <-> AccommodationRating
+	@axm80 isOfferedAt : Activity <-> Destination
+	@axm81 isOfferedAt = hasActivity~
+	@axm82 hasAccommodation : Destination <-> Accommodation
+	@axm83 hasPart : Destination <-> Destination
+	@axm84 hasPart circ hasPart <: hasPart

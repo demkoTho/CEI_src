@@ -13,7 +13,7 @@ public class CEI_OWL2B {
 
 		try 
 		{
-		   in=new FileInputStream("travel.owl");
+		   in=new FileInputStream("time.owl");
 		} 
 		catch (FileNotFoundException ex) 
 		{

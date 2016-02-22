@@ -3,11 +3,12 @@ CONTEXT
 SETS
 	Thing
 	int
+	string
 	dateTime
 CONSTANTS
 	TimeLine
-	BoundedDiscreteInterval
 	TimeLineMap
+	BoundedDiscreteInterval
 	UniformSamplingMap
 	DiscreteTimeLine
 	TimeObject
@@ -26,27 +27,34 @@ CONSTANTS
 	before
 	after
 AXIOMS
-	@axm1 TimeLine <: Thing
-	@axm2 BoundedDiscreteInterval <: Thing
-	@axm3 TimeLineMap <: Thing
-	@axm4 UniformSamplingMap <: Thing
-	@axm5 DiscreteTimeLine <: TimeLine
-	@axm6 TimeObject <: Thing
-	@axm7 Interval <: Thing
-	@axm8 Instant <: Thing
-	@axm9 ContinuousTimeLine <: TimeLine
-	@axm10 contains <: contains
-	@axm11 beginsAt <: contains
-	@axm12 endsAt <: contains
-	@axm13 sampleRate : UniformSamplingMap --> int
-	@axm14 atDateTime : Instant --> dateTime
-	@axm15 secondTimeLine : TimeLineMap --> TimeLine
-	@axm16 onTimeLine : TimeObject <-> TimeLine
-	@axm17 firstTimeLine : TimeLineMap --> TimeLine
-	@axm18 during : Instant <-> Interval
-	@axm19 during = contains~
-	@axm20 before : Instant <-> Instant
-	@axm21 before = after~
-	@axm22 before circ before <: before
-	@axm23 after : Instant <-> Instant
-	@axm24 after circ after <: after
+	@axm1 TimeLine = ContinuousTimeLine \/ DiscreteTimeLine
+	@axm2 BoundedDiscreteInterval <: dom(beginsAt) /\ dom(endsAt)
+	@axm3 BoundedDiscreteInterval <: Interval
+	@axm4 BoundedDiscreteInterval <: TimeObject
+	@axm5 BoundedDiscreteInterval = dom(onTimeLine |> DiscreteTimeLine)
+	@axm6 UniformSamplingMap <: dom(firstTimeLine |> ContinuousTimeLine)
+	@axm7 UniformSamplingMap <: dom(secondTimeLine |> DiscreteTimeLine)
+	@axm8 UniformSamplingMap <: dom(sampleRate)
+	@axm9 UniformSamplingMap <: TimeLineMap
+	@axm10 DiscreteTimeLine <: TimeLine
+	@axm11 Interval <: TimeObject
+	@axm12 Instant <: dom(atDateTime)
+	@axm13 Instant <: TimeObject
+	@axm14 Instant /\ Interval = {}
+	@axm15 ContinuousTimeLine <: TimeLine
+	@axm16 ContinuousTimeLine /\ DiscreteTimeLine = {}
+	@axm17 contains <: contains
+	@axm18 beginsAt <: contains
+	@axm19 endsAt <: contains
+	@axm20 sampleRate : UniformSamplingMap --> int
+	@axm21 atDateTime : Instant --> dateTime
+	@axm22 secondTimeLine : TimeLineMap --> TimeLine
+	@axm23 onTimeLine : TimeObject <-> TimeLine
+	@axm24 firstTimeLine : TimeLineMap --> TimeLine
+	@axm25 during : Instant <-> Interval
+	@axm26 during = contains~
+	@axm27 before : Instant <-> Instant
+	@axm28 before = after~
+	@axm29 before circ before <: before
+	@axm30 after : Instant <-> Instant
+	@axm31 after circ after <: after

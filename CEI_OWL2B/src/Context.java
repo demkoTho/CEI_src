@@ -216,42 +216,35 @@ public class Context {
 		// Intersection ou Union
 		else
 		{
+			String operateur ="";
+			Iterator i =null;
 			try
 			{
 				UnionClass ic = c.asUnionClass();
-				result += "(";
-
-				for (Iterator i = ic.listOperands(); i.hasNext(); ) {
-					OntClass op = (OntClass) i.next();
-					
-					result += interpretClass(op);
-
-					if(i.hasNext())
-						result += " \\/ ";
-					
-				}
-				result += ")";
-
-			} catch (Exception e) {
-
-			}
-
+				i = ic.listOperands(); i.hasNext();
+				operateur = " \\/ ";
+			} catch(Exception e){}
+			
 			try
 			{
 				IntersectionClass ic = c.asIntersectionClass();
+				i = ic.listOperands(); i.hasNext();
+				operateur = " /\\ ";
+			} catch(Exception e){}
+			
+			if(i != null){
 				result += "(";
-				for (Iterator i = ic.listOperands(); i.hasNext(); ) {
+
+				while(i.hasNext() ) {
 					OntClass op = (OntClass) i.next();
-
+					
 					result += interpretClass(op);
+
 					if(i.hasNext())
-						result += " /\\ ";
+						result += operateur;
+					
 				}
-				
 				result += ")";
-
-			} catch (Exception e) {
-
 			}
 		}
 		

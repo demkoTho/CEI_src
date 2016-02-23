@@ -137,7 +137,6 @@ public class Context {
 			{
 				String name = shortenURL(s);
 				
-				// TODO: changer ça en un itérateur sur les superproperties (cf classes)
 				ExtendedIterator<? extends OntProperty> superProperties = s.listSuperProperties();
 
 				// Déclaration des propriétés
@@ -225,7 +224,7 @@ public class Context {
 				for (Iterator i = ic.listOperands(); i.hasNext(); ) {
 					OntClass op = (OntClass) i.next();
 					
-					interpretClass(op);
+					result += interpretClass(op);
 
 					if(i.hasNext())
 						result += " \\/ ";
@@ -244,7 +243,7 @@ public class Context {
 				for (Iterator i = ic.listOperands(); i.hasNext(); ) {
 					OntClass op = (OntClass) i.next();
 
-					interpretClass(op);
+					result += interpretClass(op);
 					if(i.hasNext())
 						result += " /\\ ";
 				}

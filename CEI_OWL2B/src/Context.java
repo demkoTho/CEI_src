@@ -100,6 +100,7 @@ public class Context {
 		{
 			OntClass s = it.next();
 			String name = shortenURL(s);
+			boolean declared = false;
 
 			// Gestion des statements subClassOf
 			ExtendedIterator<OntClass> superClasses = s.listSuperClasses();
@@ -108,7 +109,10 @@ public class Context {
 				OntClass superClass = superClasses.next();
 				String axiom = interpretClass(superClass);
 				if(axiom != "")
+				{
 					result.add(name + " <: " + axiom);
+					declared = true;
+				}
 			}
 			
 			// Gestion des classes déclarées par équivalence
@@ -118,8 +122,14 @@ public class Context {
 				OntClass equivalentClass = equivalentClasses.next();
 				String axiom = interpretClass(equivalentClass);
 				if(axiom != "")
-					result.add(name + " = " + axiom);	
+				{
+					result.add(name + " = " + axiom);
+					declared = true;
+				}
 			}
+			
+			if(!declared)
+				result.add(name + " <: Thing");
 
 			ExtendedIterator<OntClass> disjoint = s.listDisjointWith();
 			while(disjoint.hasNext())
@@ -166,8 +176,6 @@ public class Context {
 					result.add("id <: " + name + " circ " + name);
 					
 				}
-				
-				//TODO: gérer les fonctions réflexives
 			}
 		}
 
@@ -193,6 +201,10 @@ public class Context {
 		else if (r.isHasValueRestriction() || (r.isMinCardinalityRestriction() && r.asMinCardinalityRestriction().getMinCardinality() == 1))
 		{
 			result += "dom(" + shortenURL(r.getOnProperty()) + ")";			
+		}
+		else
+		{
+			result += "!!!";
 		}
 			
 		return result;

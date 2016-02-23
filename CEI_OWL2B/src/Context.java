@@ -138,17 +138,17 @@ public class Context {
 				String name = shortenURL(s);
 				
 				// TODO: changer ça en un itérateur sur les superproperties (cf classes)
-				OntProperty superProperty = s.getSuperProperty();
+				ExtendedIterator<? extends OntProperty> superProperties = s.listSuperProperties();
 
 				// Déclaration des propriétés
-				if(superProperty != null)
-				{
-					result.add(name + " <: " + shortenURL(superProperty));
-				}
-				else
+				if(!superProperties.hasNext())
 				{
 					String symbole = s.isFunctionalProperty() ? " --> " : " <-> ";
 					result.add(name + " : " + shortenURL(s.getDomain()) + symbole + shortenURL(s.getRange()));
+				}
+				while(superProperties.hasNext())
+				{
+					result.add(name + " <: " + shortenURL(superProperties.next()));
 				}
 
 				// Gestion des inverses
@@ -220,26 +220,18 @@ public class Context {
 			try
 			{
 				UnionClass ic = c.asUnionClass();
+				result += "(";
 
 				for (Iterator i = ic.listOperands(); i.hasNext(); ) {
 					OntClass op = (OntClass) i.next();
 					
-					result += "(";
-
-					if(op.isRestriction())
-					{
-						result += interpretRestriction(op.asRestriction());
-					}
-					else
-					{
-						result += shortenURL(op);
-					}
+					interpretClass(op);
 
 					if(i.hasNext())
 						result += " \\/ ";
 					
-					result += ")";
 				}
+				result += ")";
 
 			} catch (Exception e) {
 
@@ -252,14 +244,7 @@ public class Context {
 				for (Iterator i = ic.listOperands(); i.hasNext(); ) {
 					OntClass op = (OntClass) i.next();
 
-					if(op.isRestriction())
-					{
-						result += interpretRestriction(op.asRestriction());
-					}
-					else
-					{
-						result += shortenURL(op);
-					}
+					interpretClass(op);
 					if(i.hasNext())
 						result += " /\\ ";
 				}
